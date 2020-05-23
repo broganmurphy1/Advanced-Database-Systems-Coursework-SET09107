@@ -1,0 +1,1966 @@
+/*****INSERTING DATA INTO BRANCH TABLE*****/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S1',
+    '1 high st',
+    'Edinburgh',
+    'EH1 1TY',
+    BMPhone_nested_table(BMPhone_nested('branch', '01312345678'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S2',
+    '34 queen street',
+    'Glasgow',
+    'WH10 7OY',
+    BMPhone_nested_table(BMPhone_nested('branch', '01417854532'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S3',
+    '12 bruntsfield place',
+    'Edinburgh',
+    'EH11 4YD',
+    BMPhone_nested_table(BMPhone_nested('branch', '01317650912'))
+);
+/
+
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S4',
+    '49 tall crescent',
+    'Dundee',
+    'UI78 9VB',
+    BMPhone_nested_table(BMPhone_nested('branch', '01512345678'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S5',
+    '20 barclay way',
+    'Edinburgh',
+    'EH13 7UF',
+    BMPhone_nested_table(BMPhone_nested('branch', '01313762170'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S6',
+    '39 plover brae',
+    'Perth',
+    'UH4 0ER',
+    BMPhone_nested_table(BMPhone_nested('branch', '01617650912'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S7',
+    '36 rose st',
+    'Aberdeen',
+    'PK13 6BV',
+    BMPhone_nested_table(BMPhone_nested('branch', '01714324760'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'S8',
+    '12 gent lane',
+    'Livingston',
+    'EH54 4ZX',
+    BMPhone_nested_table(BMPhone_nested('branch', '01506423567'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E1',
+    '17 oxford st',
+    'London',
+    'OL13 5LP',
+    BMPhone_nested_table(BMPhone_nested('branch', '07175654321'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E2',
+    '78 oak rd',
+    'Manchester',
+    'MA13 7LK',
+    BMPhone_nested_table(BMPhone_nested('branch', '08147658900'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E3',
+    '45 ford st',
+    'Birmingham',
+    'BI71 2QW',
+    BMPhone_nested_table(BMPhone_nested('branch', '09819265456'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E4',
+    '71 fleet st',
+    'London',
+    'OL17 4MN',
+    BMPhone_nested_table(BMPhone_nested('branch', '07178790012'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E5',
+    '52 wallaby way',
+    'Cambridge',
+    'CA13 5LP',
+    BMPhone_nested_table(BMPhone_nested('branch', '09543432129'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E6',
+    '89 top st',
+    'Liverpool',
+    'LI34 7MC',
+    BMPhone_nested_table(BMPhone_nested('branch', '01263674378'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E7',
+    '41 downing st',
+    'London',
+    'OL17 1KJ',
+    BMPhone_nested_table(BMPhone_nested('branch', '07172451819'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E8',
+    '67 regent st',
+    'London',
+    'OL4 6FK',
+    BMPhone_nested_table(BMPhone_nested('branch', '07171945734'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'E9',
+    '23 manford lane',
+    'Manchester',
+    'MA34 9TD',
+    BMPhone_nested_table(BMPhone_nested('branch', '08143678901'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'W1',
+    '24 cymru way',
+    'Swansea',
+    'SW12 8HH',
+    BMPhone_nested_table(BMPhone_nested('branch', '07452137890'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'W2',
+    '112 louis st',
+    'Cardiff',
+    'CA22 4KQ',
+    BMPhone_nested_table(BMPhone_nested('branch', '01673487105'))
+);
+/
+
+insert into Branch_table(branchid, street, city, postcode, phonenumber)
+values
+(
+    'NI1',
+    '80 patrick way',
+    'Belfast',
+    'BL1 2BP',
+    BMPhone_nested_table(BMPhone_nested('branch', '09717482513'))
+);
+/
+
+
+/*****INSERTING DATA INTO ACCOUNT TABLE*****/
+
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1000,
+    'savings',
+    3000,
+	(select ref(b) from branch_table b where b.branchid = 'S1'),
+    '0.05',
+    0,
+    '01-May-15'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1001,
+    'savings',
+    5550,
+	(select ref(b) from branch_table b where b.branchid = 'S1'),
+    '0.02',
+    0,
+    '23-Dec-01'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1002,
+    'current',
+    34,
+	(select ref(b) from branch_table b where b.branchid = 'S1'),
+    '0.001',
+    1000,
+    '24-Dec-02'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1003,
+    'current',
+    276,
+	(select ref(b) from branch_table b where b.branchid = 'S1'),
+    '0.007',
+    1500,
+    '23-Jul-89'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1004,
+    'savings',
+    15000,
+	(select ref(b) from branch_table b where b.branchid = 'S2'),
+    '0.03',
+    0,
+    '28-Jun-10'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1005,
+    'savings',
+    16000,
+	(select ref(b) from branch_table b where b.branchid = 'S2'),
+    '0.07',
+    0,
+    '28-Dec-10'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1006,
+    'current',
+    420,
+	(select ref(b) from branch_table b where b.branchid = 'S2'),
+    '0.045',
+    1000,
+    '12-Sep-10'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1007,
+    'savings',
+    12345,
+	(select ref(b) from branch_table b where b.branchid = 'S3'),
+    '0.10',
+    0,
+    '8-Jun-01'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1008,
+    'savings',
+    20000,
+	(select ref(b) from branch_table b where b.branchid = 'S3'),
+    '0.05',
+    0,
+    '31-Jan-19'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1009,
+    'savings',
+    30000,
+	(select ref(b) from branch_table b where b.branchid = 'S3'),
+    '0.09',
+    0,
+    '23-Feb-13'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1010,
+    'current',
+    45,
+	(select ref(b) from branch_table b where b.branchid = 'S4'),
+    '0.009',
+    25000,
+    '28-Feb-16'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1011,
+    'current',
+    396,
+	(select ref(b) from branch_table b where b.branchid = 'S5'),
+    '0.078',
+    2000,
+    '21-Mar-14'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1012,
+    'current',
+    12,
+	(select ref(b) from branch_table b where b.branchid = 'S6'),
+    '0.061',
+    1250,
+    '08-Aug-04'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1013,
+    'current',
+    137,
+	(select ref(b) from branch_table b where b.branchid = 'S7'),
+    '0.01',
+    5000,
+    '08-Aug-92'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1014,
+    'current',
+    1305,
+	(select ref(b) from branch_table b where b.branchid = 'S8'),
+    '0.007',
+    200,
+    '09-Feb-19'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1015,
+    'current',
+    4356,
+	(select ref(b) from branch_table b where b.branchid = 'E1'),
+    '0.075',
+    3000,
+    '18-Oct-03'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1016,
+    'current',
+    654,
+	(select ref(b) from branch_table b where b.branchid = 'E2'),
+    '0.009',
+    50,
+    '04-Jan-20'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1017,
+    'current',
+    512,
+	(select ref(b) from branch_table b where b.branchid = 'E3'),
+    '0.095',
+    75,
+    '12-Feb-18'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1018,
+    'current',
+    7812,
+	(select ref(b) from branch_table b where b.branchid = 'E4'),
+    '0.02',
+    450,
+    '30-Apr-11'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1019,
+    'current',
+    123,
+	(select ref(b) from branch_table b where b.branchid = 'E5'),
+    '0.030',
+    70,
+    '20-Sep-18'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1020,
+    'current',
+    908,
+	(select ref(b) from branch_table b where b.branchid = 'E6'),
+    '0.035',
+    100,
+    '02-Mar-15'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1021,
+    'current',
+    1002,
+	(select ref(b) from branch_table b where b.branchid = 'E7'),
+    '0.067',
+    750,
+    '18-Nov-13'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1022,
+    'current',
+    2908,
+	(select ref(b) from branch_table b where b.branchid = 'E8'),
+    '0.060',
+    2000,
+    '18-Nov-13'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1023,
+    'current',
+    69,
+	(select ref(b) from branch_table b where b.branchid = 'E9'),
+    '0.043',
+    500,
+    '15-Dec-19'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1024,
+    'current',
+    420,
+	(select ref(b) from branch_table b where b.branchid = 'W1'),
+    '0.034',
+    400,
+    '11-Feb-13'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1025,
+    'current',
+    671,
+	(select ref(b) from branch_table b where b.branchid = 'W2'),
+    '0.093',
+    1100,
+    '04-May-09'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1026,
+    'current',
+    347,
+	(select ref(b) from branch_table b where b.branchid = 'NI1'),
+    '0.03',
+    2000,
+    '07-Jun-06'
+);
+/
+
+insert into account_table(accnum,acctype,balance,branchid,interestrate,limitoffreeod,opendate)
+values
+(
+    1027,
+    'current',
+    348,
+	(select ref(b) from branch_table b where b.branchid = 'NI1'),
+    '0.035',
+    2500,
+    '07-Jun-06'
+);
+/
+
+
+/*****INSERTING DATA INTO EMPLOYEE TABLE*****/
+
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E100',
+    BMName_type('Mr','John','Jones'),
+    BMAddress_type('39 Plover Wing', 'Edinburgh', 'EH13 1AQ'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07985123123')),
+    'N1001',
+    (select ref(b) from branch_table b where b.branchid = 'S1'),
+    'head',
+    70000,
+    (select ref(e) from employee_table e where e.empid = null),
+    '05-May-06'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E101',
+    BMName_type('Mrs','Gwen','Smith'),
+    BMAddress_type('50 Qwerty Lane', 'Dalkeith', 'EH44 2EC'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07510321321')),
+    'N1002',
+    (select ref(b) from branch_table b where b.branchid = 'S1'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '29-May-10'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E102',
+    BMName_type('Mrs','Holly','Henderson'),
+    BMAddress_type('8 Barclay Way', 'Livingston', 'EH54 8EY'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07894367890')),
+    'N1003',
+    (select ref(b) from branch_table b where b.branchid = 'S1'),
+    'accountant',
+    37500,
+    (select ref(e) from employee_table e where e.empid = 'E101'),
+    '06-Apr-13'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E103',
+    BMName_type('Ms','Rachel','Reid'),
+    BMAddress_type('100 Far Lane', 'Glasgow', 'GL67 2PO'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07109438713')),
+    'N1004',
+    (select ref(b) from branch_table b where b.branchid = 'S1'),
+    'project leader',
+    40000,
+    (select ref(e) from employee_table e where e.empid = 'E101'),
+    '27-Dec-11'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E104',
+    BMName_type('Mr','James','Harris'),
+    BMAddress_type('90 Street Lane', 'Edinburgh', 'EH12 1WV'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07876234678')),
+    'N1005',
+    (select ref(b) from branch_table b where b.branchid = 'S1'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E101'),
+    '21-Jun-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E105',
+    BMName_type('Mrs','Alison','Marshall'),
+    BMAddress_type('24 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07520340761')),
+    'N1006',
+    (select ref(b) from branch_table b where b.branchid = 'S1'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E101'),
+    '05-Jan-19'
+);
+/
+
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E106',
+    BMName_type('Mr','Quentin','Tarantino'),
+    BMAddress_type('10 Street Way', 'Armadale', 'EH51 3EW'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07674109983')),
+    'N1007',
+    (select ref(b) from branch_table b where b.branchid = 'S2'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '31-Mar-03'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E107',
+    BMName_type('Ms','Jennifer','Aniston'),
+    BMAddress_type('10 Street Lane', 'Edinburgh', 'EH54 9OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07231469054')),
+    'N1008',
+    (select ref(b) from branch_table b where b.branchid = 'S2'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E106'),
+    '23-May-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E108',
+    BMName_type('Mr','Brad','Pitt'),
+    BMAddress_type('10 Street Lane', 'Livingston', 'EH54 9OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07231469054')),
+    'N1009',
+    (select ref(b) from branch_table b where b.branchid = 'S2'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E106'),
+    '23-May-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E109',
+    BMName_type('Mr','James','Hetfield'),
+    BMAddress_type('10 Metallica Avenue', 'Edinburgh', 'EH3 7UJ'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07659078385')),
+    'N1010',
+    (select ref(b) from branch_table b where b.branchid = 'S2'),
+    'accountant',
+    35000,
+    (select ref(e) from employee_table e where e.empid = 'E106'),
+    '01-May-16'
+);
+/
+
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E110',
+    BMName_type('Mr','Kirk','Hammett'),
+    BMAddress_type('11 Metallica Avenue', 'Edinburgh', 'EH3 7UJ'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07432780651')),
+    'N1011',
+    (select ref(b) from branch_table b where b.branchid = 'S2'),
+    'accountant',
+    35001,
+    (select ref(e) from employee_table e where e.empid = 'E106'),
+    '01-May-16'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E111',
+    BMName_type('Mr','Lars','Ulrich'),
+    BMAddress_type('15 Metallica Avenue', 'Edinburgh', 'EH3 7UJ'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07659078378')),
+    'N1012',
+    (select ref(b) from branch_table b where b.branchid = 'S3'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '11-Jan-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E112',
+    BMName_type('Mr','Rob','Trujillo'),
+    BMAddress_type('20 Metallica Avenue', 'Edinburgh', 'EH3 7UJ'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07652684378')),
+    'N1013',
+    (select ref(b) from branch_table b where b.branchid = 'S3'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E111'),
+    '04-Nov-12'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E113',
+    BMName_type('Mr','Dave','Mustaine'),
+    BMAddress_type('20 Megadeth Way', 'Edinburgh', 'EH12 8MD'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07409126760')),
+    'N1014',
+    (select ref(b) from branch_table b where b.branchid = 'S4'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '04-Nov-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E114',
+    BMName_type('Mr','David','Ellefson'),
+    BMAddress_type('10 Megadeth Way', 'Edinburgh', 'EH12 8MD'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07789012376')),
+    'N1015',
+    (select ref(b) from branch_table b where b.branchid = 'S4'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E113'),
+    '04-Nov-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E115',
+    BMName_type('Mr','Nick','Menza'),
+    BMAddress_type('14 Megadeth Way', 'Edinburgh', 'EH12 8MD'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453126789')),
+    'N1016',
+    (select ref(b) from branch_table b where b.branchid = 'S5'),
+    'manager',
+    46000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '05-Dec-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E116',
+    BMName_type('Mr','Marty','Friedman'),
+    BMAddress_type('114 Megadeth Way', 'Edinburgh', 'EH12 8MD'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453126712')),
+    'N1017',
+    (select ref(b) from branch_table b where b.branchid = 'S5'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E115'),
+    '07-Dec-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E117',
+    BMName_type('Mr','Chris','Poland'),
+    BMAddress_type('115 Megadeth Way', 'Edinburgh', 'EH12 8MD'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453126720')),
+    'N1018',
+    (select ref(b) from branch_table b where b.branchid = 'S6'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '07-Dec-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E118',
+    BMName_type('Mr','Gar','Samuelson'),
+    BMAddress_type('118 Megadeth Way', 'Edinburgh', 'EH12 8MD'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453125932')),
+    'N1019',
+    (select ref(b) from branch_table b where b.branchid = 'S6'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E117'),
+    '09-Feb-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E119',
+    BMName_type('Mr','Phil','Anselmo'),
+    BMAddress_type('118 Pantera Street', 'Edinburgh', 'EH11 5MN'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453125967')),
+    'N1020',
+    (select ref(b) from branch_table b where b.branchid = 'S7'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '19-Apr-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E120',
+    BMName_type('Mr','Darrell','Abbott'),
+    BMAddress_type('119 Pantera Street', 'Edinburgh', 'EH11 5MN'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453154789')),
+    'N1021',
+    (select ref(b) from branch_table b where b.branchid = 'S7'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E119'),
+    '22-Apr-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E121',
+    BMName_type('Mr','Vinnie','Paul'),
+    BMAddress_type('98 Pantera Street', 'Edinburgh', 'EH11 5MN'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453391789')),
+    'N1022',
+    (select ref(b) from branch_table b where b.branchid = 'S8'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E100'),
+    '10-Mar-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E122',
+    BMName_type('Mr','Rex','Brown'),
+    BMAddress_type('70 Pantera Street', 'Edinburgh', 'EH11 5MN'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453123459')),
+    'N1023',
+    (select ref(b) from branch_table b where b.branchid = 'S8'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E121'),
+    '15-Mar-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E123',
+    BMName_type('Mr','Joe','Bloggs'),
+    BMAddress_type('70 Pantera Street', 'Edinburgh', 'EH11 5PK'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07453123459')),
+    'N1024',
+    (select ref(b) from branch_table b where b.branchid = 'E1'),
+    'head',
+    70000,
+    (select ref(e) from employee_table e where e.empid = null),
+    '15-Mar-03'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E124',
+    BMName_type('Mr','Stuart','Bloggs'),
+    BMAddress_type('10 Pantera Street', 'Edinburgh', 'EH11 5PK'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07178421459')),
+    'N1025',
+    (select ref(b) from branch_table b where b.branchid = 'E1'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '15-Mar-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E125',
+    BMName_type('Mr','Dave','Bloggs'),
+    BMAddress_type('20 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07178421459')),
+    'N1026',
+    (select ref(b) from branch_table b where b.branchid = 'E2'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '15-Mar-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E126',
+    BMName_type('Mrs','Jane','Bloggs'),
+    BMAddress_type('30 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07178421463')),
+    'N1027',
+    (select ref(b) from branch_table b where b.branchid = 'E2'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E125'),
+    '07-Sep-19'
+);
+/
+
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E127',
+    BMName_type('Ms','Sophie','Bloggs'),
+    BMAddress_type('31 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07564421463')),
+    'N1028',
+    (select ref(b) from branch_table b where b.branchid = 'E3'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '30-Aug-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E128',
+    BMName_type('Ms','Stephanie','Bloggs'),
+    BMAddress_type('32 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07563278463')),
+    'N1029',
+    (select ref(b) from branch_table b where b.branchid = 'E3'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E127'),
+    '25-Nov-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E129',
+    BMName_type('Mr','Keith','Bloggs'),
+    BMAddress_type('33 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07563469163')),
+    'N1030',
+    (select ref(b) from branch_table b where b.branchid = 'E4'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '25-Nov-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E130',
+    BMName_type('Mr','Liam','Bloggs'),
+    BMAddress_type('34 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07563657900')),
+    'N1031',
+    (select ref(b) from branch_table b where b.branchid = 'E4'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E129'),
+    '25-Nov-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E131',
+    BMName_type('Mr','Ethan','Bloggs'),
+    BMAddress_type('35 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07456789101')),
+    'N1032',
+    (select ref(b) from branch_table b where b.branchid = 'E5'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '25-Nov-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E132',
+    BMName_type('Mr','Jamie','Bloggs'),
+    BMAddress_type('36 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07678325690')),
+    'N1033',
+    (select ref(b) from branch_table b where b.branchid = 'E5'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E131'),
+    '26-Oct-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E133',
+    BMName_type('Mr','Brogan','Bloggs'),
+    BMAddress_type('37 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07567123902')),
+    'N1034',
+    (select ref(b) from branch_table b where b.branchid = 'E6'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '27-Jan-16'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E134',
+    BMName_type('Mrs','Linda','Bloggs'),
+    BMAddress_type('38 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07345123902')),
+    'N1035',
+    (select ref(b) from branch_table b where b.branchid = 'E6'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E133'),
+    '28-Feb-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E135',
+    BMName_type('Mr','Brogan','Murphy'),
+    BMAddress_type('39 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07963516670')),
+    'N1036',
+    (select ref(b) from branch_table b where b.branchid = 'E7'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '28-Feb-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E136',
+    BMName_type('Mr','Ethan','Murphy'),
+    BMAddress_type('40 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07963513678')),
+    'N1037',
+    (select ref(b) from branch_table b where b.branchid = 'E7'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E135'),
+    '01-Apr-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E137',
+    BMName_type('Mrs','Elizabeth','Windsor'),
+    BMAddress_type('41 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07963567890')),
+    'N1038',
+    (select ref(b) from branch_table b where b.branchid = 'E8'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '05-May-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E138',
+    BMName_type('Mr','Jon','Murphy'),
+    BMAddress_type('41 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123456788')),
+    'N1039',
+    (select ref(b) from branch_table b where b.branchid = 'E8'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E137'),
+    '13-Jul-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E139',
+    BMName_type('Mr','James','Murphy'),
+    BMAddress_type('43 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07098765432')),
+    'N1040',
+    (select ref(b) from branch_table b where b.branchid = 'E9'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '15-Jul-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E140',
+    BMName_type('Mr','Ian','Silver'),
+    BMAddress_type('44 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123098456')),
+    'N1041',
+    (select ref(b) from branch_table b where b.branchid = 'E9'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E139'),
+    '19-Aug-19'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E141',
+    BMName_type('Mr','Matt','Silver'),
+    BMAddress_type('45 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123098654')),
+    'N1042',
+    (select ref(b) from branch_table b where b.branchid = 'W1'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '17-Mar-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E142',
+    BMName_type('Mr','Tim','Silver'),
+    BMAddress_type('46 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123453101')),
+    'N1043',
+    (select ref(b) from branch_table b where b.branchid = 'W1'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E141'),
+    '19-Mar-17'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E143',
+    BMName_type('Mr','Jim','Silver'),
+    BMAddress_type('47 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123456783')),
+    'N1044',
+    (select ref(b) from branch_table b where b.branchid = 'W2'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '01-Dec-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E144',
+    BMName_type('Mr','Kenny','Silver'),
+    BMAddress_type('48 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123432165')),
+    'N1045',
+    (select ref(b) from branch_table b where b.branchid = 'W2'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E143'),
+    '14-Dec-18'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E145',
+    BMName_type('Mrs','Jenny','Silver'),
+    BMAddress_type('49 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123567210')),
+    'N1046',
+    (select ref(b) from branch_table b where b.branchid = 'NI1'),
+    'manager',
+    45000,
+    (select ref(e) from employee_table e where e.empid = 'E123'),
+    '09-Jun-16'
+);
+/
+
+insert into employee_table(empid,personname,address,phonenumber,ninum,branchid,jobposition,salary,supervisorid,joindate)
+values
+(
+    'E146',
+    BMName_type('Mrs','Abby','Silver'),
+    BMAddress_type('50 England Street', 'Manchester', 'MA12 4OL'),
+    BMPhone_nested_table(BMPhone_nested('empmob', '07123567348')),
+    'N1047',
+    (select ref(b) from branch_table b where b.branchid = 'NI1'),
+    'cashier',
+    22000,
+    (select ref(e) from employee_table e where e.empid = 'E145'),
+    '24-Jun-16'
+);
+/
+
+
+/*****INSERTING DATA INTO CUSTOMER TABLE*****/
+
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C001',
+    BMName_type('Mr', 'Callum', 'Brown'),
+    BMAddress_type('84 Leven Walk', 'Livingston', 'EH54 5AN'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07504678900'),BMPhone_nested('custmob', '07986125689')),
+    'N2000'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C002',
+    BMName_type('Mr', 'Mark', 'Brown'),
+    BMAddress_type('85 Leven Walk', 'Livingston', 'EH54 5AN'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07503563123'),BMPhone_nested('custmob', '07561239007')),
+    'N2001'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C003',
+    BMName_type('Mr', 'James', 'Ian'),
+    BMAddress_type('87 Nice Lane', 'Edinburgh', 'EH11 1FA'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07789023451')),
+    'N2002'
+);
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C004',
+    BMName_type('Mr', 'Darren', 'Jones'),
+    BMAddress_type('90 West Lane', 'Edinburgh', 'EH15 7BH'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07123457815')),
+    'N2003'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C005',
+    BMName_type('Mrs', 'Jane', 'Jones'),
+    BMAddress_type('90 West Lane', 'Edinburgh', 'EH15 7BH'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07123129007')),
+    'N2004'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C006',
+    BMName_type('Mr', 'Stuart', 'Biggs'),
+    BMAddress_type('91 North Lane', 'Edinburgh', 'EH12 1AQ'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07456129003')),
+    'N2005'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C007',
+    BMName_type('Mrs', 'Linda', 'Biggs'),
+    BMAddress_type('91 North Lane', 'Edinburgh', 'EH12 1AQ'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07456190634')),
+    'N2006'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C008',
+    BMName_type('Mr', 'William', 'Shaun'),
+    BMAddress_type('23 West Lane', 'Edinburgh', 'EH6 2AC'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07345120098')),
+    'N2007'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C009',
+    BMName_type('Mrs', 'Olivia', 'Shaun'),
+    BMAddress_type('23 West Lane', 'Edinburgh', 'EH6 2AC'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07345198452')),
+    'N2008'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C010',
+    BMName_type('Ms', 'Alison', 'Hell'),
+    BMAddress_type('1 South Lane', 'Edinburgh', 'EH6 2AC'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07101202303')),
+    'N2009'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C011',
+    BMName_type('Ms', 'Alison', 'Jenkins'),
+    BMAddress_type('2 South Lane', 'Edinburgh', 'EH6 2AC'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07101202304')),
+    'N2010'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C012',
+    BMName_type('Mr', 'Paul', 'Jenkins'),
+    BMAddress_type('3 South Lane', 'Edinburgh', 'EH6 2AC'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07101202305')),
+    'N2011'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C013',
+    BMName_type('Mr', 'Steve', 'Polanski'),
+    BMAddress_type('4 South Lane', 'Edinburgh', 'EH6 2AC'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07101202306')),
+    'N2012'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C014',
+    BMName_type('Mr', 'James', 'Harris'),
+    BMAddress_type('90 Street Lane', 'Edinburgh', 'EH12 1WV'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07876234678')),
+    'N1005'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C015',
+    BMName_type('Mrs', 'Alison', 'Marshall'),
+    BMAddress_type('24 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340761')),
+    'N1006'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C016',
+    BMName_type('Mrs', 'Megan', 'Maple'),
+    BMAddress_type('25 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340762')),
+    'N2013'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C017',
+    BMName_type('Mrs', 'Taylor', 'Maple'),
+    BMAddress_type('26 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340763')),
+    'N2014'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C018',
+    BMName_type('Mr', 'John', 'Maple'),
+    BMAddress_type('27 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340764')),
+    'N2015'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C019',
+    BMName_type('Mr', 'Liam', 'Maple'),
+    BMAddress_type('28 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340765')),
+    'N2016'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C020',
+    BMName_type('Mr', 'Callum', 'Maple'),
+    BMAddress_type('29 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340766')),
+    'N2017'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C021',
+    BMName_type('Mr', 'Brian', 'Maple'),
+    BMAddress_type('30 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340767')),
+    'N2018'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C022',
+    BMName_type('Mr', 'Craig', 'Maple'),
+    BMAddress_type('31 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340768')),
+    'N2019'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C023',
+    BMName_type('Mrs', 'Jane', 'Banana'),
+    BMAddress_type('32 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340769')),
+    'N2020'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C024',
+    BMName_type('Mrs', 'Sandra', 'Banana'),
+    BMAddress_type('33 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340770')),
+    'N2021'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C025',
+    BMName_type('Mrs', 'Kayley', 'Banana'),
+    BMAddress_type('34 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340771')),
+    'N2022'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C026',
+    BMName_type('Mrs', 'Jennifer', 'Banana'),
+    BMAddress_type('35 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340772')),
+    'N2023'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C027',
+    BMName_type('Mr', 'Adam', 'Banana'),
+    BMAddress_type('36 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340773')),
+    'N2024'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C028',
+    BMName_type('Mr', 'Bart', 'Banana'),
+    BMAddress_type('37 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340774')),
+    'N2025'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C029',
+    BMName_type('Mr', 'Henry', 'Banana'),
+    BMAddress_type('38 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340775')),
+    'N2026'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C030',
+    BMName_type('Mr', 'Henrich', 'Banana'),
+    BMAddress_type('39 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340776')),
+    'N2027'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C031',
+    BMName_type('Mr', 'Bailey', 'Banana'),
+    BMAddress_type('40 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340777')),
+    'N2028'
+);
+/
+
+insert into customer_table(custid,personname,address,phonenumber,ninum)
+values
+(
+    'C032',
+    BMName_type('Mr', 'Brett', 'Banana'),
+    BMAddress_type('41 Beech Lane', 'Edinburgh', 'EH4 4TY'),
+    BMPhone_nested_table(BMPhone_nested('custmob', '07520340778')),
+    'N2029'
+);
+/
+
+
+/*****INSERT INTO CUSTOMER ACCOUNT TABLE USING REF*****/
+
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C001'),
+    (select ref (a) from account_table a where a.accnum = 1001)
+);
+/
+
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C002'),
+    (select ref (a) from account_table a where a.accnum = 1027)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C003'),
+    (select ref (a) from account_table a where a.accnum = 1004)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C004'),
+    (select ref (a) from account_table a where a.accnum = 1002)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C005'),
+    (select ref (a) from account_table a where a.accnum = 1002)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C006'),
+    (select ref (a) from account_table a where a.accnum = 1003)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C007'),
+    (select ref (a) from account_table a where a.accnum = 1003)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C008'),
+    (select ref (a) from account_table a where a.accnum = 1006)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C009'),
+    (select ref (a) from account_table a where a.accnum = 1006)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C010'),
+    (select ref (a) from account_table a where a.accnum = 1000)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C011'),
+    (select ref (a) from account_table a where a.accnum = 1005)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C012'),
+    (select ref (a) from account_table a where a.accnum = 1007)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C013'),
+    (select ref (a) from account_table a where a.accnum = 1008)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C014'),
+    (select ref (a) from account_table a where a.accnum = 1009)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C015'),
+    (select ref (a) from account_table a where a.accnum = 1010)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C016'),
+    (select ref (a) from account_table a where a.accnum = 1011)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C017'),
+    (select ref (a) from account_table a where a.accnum = 1012)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C018'),
+    (select ref (a) from account_table a where a.accnum = 1013)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C019'),
+    (select ref (a) from account_table a where a.accnum = 1014)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C020'),
+    (select ref (a) from account_table a where a.accnum = 1015)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C021'),
+    (select ref (a) from account_table a where a.accnum = 1016)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C022'),
+    (select ref (a) from account_table a where a.accnum = 1017)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C023'),
+    (select ref (a) from account_table a where a.accnum = 1018)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C024'),
+    (select ref (a) from account_table a where a.accnum = 1019)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C025'),
+    (select ref (a) from account_table a where a.accnum = 1020)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C026'),
+    (select ref (a) from account_table a where a.accnum = 1021)
+	
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C027'),
+    (select ref (a) from account_table a where a.accnum = 1022)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C028'),
+    (select ref (a) from account_table a where a.accnum = 1023)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C029'),
+    (select ref (a) from account_table a where a.accnum = 1024)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C030'),
+    (select ref (a) from account_table a where a.accnum = 1025)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C031'),
+    (select ref (a) from account_table a where a.accnum = 1026)
+);
+/
+
+INSERT INTO customer_account(custid,accnum)
+values
+(
+    (select ref (c) from customer_table c where c.custID = 'C032'),
+    (select ref (a) from account_table a where a.accnum = 1027)
+);
+/

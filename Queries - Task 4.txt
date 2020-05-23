@@ -1,0 +1,72 @@
+/***** a. Find employees whose first name includes the string “st” and live in Edinburgh, 
+displaying their full names. *****/
+
+
+select e.personname.title||' '|| e.personname.firstName||' '|| e.personname.lastName as "Employee's who's 
+first name contains 'st'"
+from employee_table e 
+where e.personname.firstname like '%st%' and e.address.city = 'Edinburgh';
+
+
+/***** b. Find the number of saving accounts at each branch, 
+displaying the number and branch’s address. *****/
+
+select a.branchid.branchid AS "Branch ID", a.branchid.street|| ',' || a.branchid.city|| ','||
+a.branchid.postcode as "Branch address", 
+count(a.acctype) AS "Number of savings accounts"
+from account_table a
+where a.acctype = 'savings'
+group by a.branchid
+order by a.branchid.branchid asc;
+
+
+
+/***** c. At each branch, find customers who have the highest balance in their savings account, 
+displaying the branch ID, their names, and the balance *****/
+
+
+select c.accnum.branchid.branchid as "Branch ID", c.custid.print_name() as "Customer Name", 
+max(c.accnum.balance) as "Balance"
+from customer_account c
+where c.accnum.acctype = 'savings'
+group by c.accnum.branchid.branchid, c.custid.print_name(), c.accnum.balance;
+
+
+
+/***** d. Find employees who are supervised by a manager and have accounts in the bank, 
+displaying the branch address that the employee works in and the 
+branch address that the account is opened with *****/
+
+select e.empid as "Employee ID", e.personname.title||' '|| e.personname.firstName||' '|| 
+e.personname.lastName as "Employee Name", 
+e.supervisorid.print_name() "Supervisor of employee",
+e.branchid.print_address() as "Employee Branch Address", 
+c.address.print_address() as "Branch Address where account is opened"
+from employee_table e, customer_table c
+where c.ninum = e.ninum and e.supervisorid.jobposition = 'manager';
+
+
+/***** e. At each branch, find customers who have the highest free overdraft limit in all current accounts
+that are joint accounts, displaying the branch’s ID, the customer’s full names, 
+the free overdraft limit in his/her current account*****/
+
+select c.accnum.branchid.branchid as "Branch ID", c.custid.print_name() as "Customer Name", 
+max(c.accnum.limitOfFreeOD) as "Highest free overdraft"
+from customer_account c
+where c.accnum.acctype = 'current'
+group by c.accnum.branchid.branchid, c.custid.print_name()
+order by c.accnum.branchid.branchid asc;
+
+
+/***** h. Award employees at the end of a year: 
+gold medals for employees who have been working at the bank for more than 12 years and supervised more than 6 staff; 
+silver medals for employees who have been working at the bank for more than 8 years and supervised more than 3 staff; 
+bronze medals for employees who have been working at the bank for more than 4 years. 
+Displaying winners’ names and Medal awarded (only displaying those who have been awarded). 
+METHODS must be used. *****/
+
+
+select e.print_name() as "Employee Name", e.assign_award() as "Award"
+from employee_table e
+where e.assign_award() != 'No Award'
+order by e.assign_award();

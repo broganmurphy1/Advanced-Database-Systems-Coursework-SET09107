@@ -1,0 +1,198 @@
+/*****STRUCTURED TYPES*****/
+
+
+create type BMAddress_type as object
+(
+	street VARCHAR2(20), /*NOT NULL*/
+	city VARCHAR2(20), /*NOT NULL*/
+	postcode VARCHAR2(8) /*NOT NULL*/
+)
+NOT FINAL;
+/
+
+alter type BMAddress_type
+add member function print_address return string /*Data/information displayed should be in values, not in types, e.g., John Smith, not NAME('John', 'Smith'). */
+cascade;
+/
+
+create or replace type body BMAddress_type as
+member function print_address return string is
+begin
+return street|| ',' || city || ',' || postcode;
+end print_address;
+end;
+/
+
+create type BMName_type as object
+(
+	title VARCHAR2(4), /*NOT NULL*/
+	firstName VARCHAR2(15), /*NOT NULL*/
+	lastName VARCHAR2(20) /*NOT NULL*/
+)
+FINAL;
+
+/
+create type BMPhone_nested as object /*will be used to created a nested phone table*/
+(
+	phoneType VARCHAR2(7), /*NOT NULL*/
+	phoneNum VARCHAR2(11)
+)
+NOT FINAL;
+/
+
+create type BMPhone_nested_table as table of BMPhone_nested
+/
+
+create type BMPerson_type as object
+(
+	address BMAddress_type, /*NOT NULL*/
+	personName BMName_type, /*NOT NULL*/
+	phoneNumber BMPhone_nested_table, /*NOT NULL*/
+	niNum VARCHAR2(5) /*NOT NULL*/ /*Unique value per person*/
+)
+NOT FINAL;
+
+alter type BMPerson_type
+add member function print_name return string /*Data/information displayed should be in values, not in types, e.g., John Smith, not NAME('John', 'Smith'). */
+cascade;
+/
+
+create or replace type body BMPerson_type as
+member function print_name return string is
+begin
+return personname.title || ' ' || personname.firstName || ' ' || personname.lastName;
+end print_name;
+end;
+/
+
+create type BMBranch_type under BMAddress_type
+(
+	branchID VARCHAR2(3), /*NOT NULL*/ /*Primary Key*/
+	phoneNumber BMPhone_nested_table /*NOT NULL*/
+)
+NOT FINAL;
+/
+
+create type BMAccount_type as object
+(
+	accNum INT, /*NOT NULL*/ /*Primary Key*/
+	accType VARCHAR2(7), /*NOT NULL*/
+	balance INT, /*NOT NULL*/
+	branchID ref BMBranch_type,
+	interestRate VARCHAR2(5), /*NOT NULL*/
+	limitOfFreeOD INT,
+	openDate DATE /*NOT NULL*/
+)
+NOT FINAL;
+/
+
+create type BMEmployee_type under BMPerson_type
+(
+	empID VARCHAR2(5), /*NOT NULL*/ /*Primary Key*/
+	jobPosition VARCHAR2(14), /*NOT NULL*/
+	salary INT, 
+	joinDate DATE, /*NOT NULL*/
+	supervisorID ref BMEmployee_type,
+	branchID ref BMBranch_type
+)
+FINAL;
+/
+
+alter type BMEmployee_type
+add member function assign_award return varchar2 
+cascade;
+/
+
+create or replace type body BMEmployee_type 
+as member function assign_award return varchar2 is 
+
+yearsAtBank number;
+numOfEmployeesSupervised number;
+emp_award varchar2(14);
+
+begin
+    select count(*)
+    into numOfEmployeesSupervised
+    from employee_table e
+    where deref(e.supervisorid).empid = self.empid;
+
+    yearsAtBank := trunc (months_between(sysDate, self.joindate))/12;
+
+    if yearsAtBank >12 and numOfEmployeesSupervised > 6 then 
+		emp_award := 'Gold Award';
+		elsif yearsAtBank >8 and numOfEmployeesSupervised > 3 then 
+		emp_award := 'Silver Award';
+		elsif yearsAtBank >4 then 
+		emp_award := 'Bronze Award';
+		else 
+		emp_award := 'No Award';
+	end if;
+	return emp_award;
+end assign_award;
+end;
+/
+
+
+create type BMCustomer_type under BMPerson_type
+(
+	custID VARCHAR2(4)
+)
+NOT FINAL;
+/
+
+/*****CREATE TABLES WITH CONSTRAINTS*****/
+
+
+create table Branch_table of BMBranch_type
+(
+	branchID PRIMARY KEY,
+	constraint street_const CHECK(street IS NOT NULL),
+	constraint city_const CHECK(city IS NOT NULL),
+	constraint postcode_const CHECK(postcode IS NOT NULL),
+	constraint phoneNumber_const CHECK(phoneNumber IS NOT NULL)
+)
+NESTED TABLE phoneNumber STORE AS branch_phone_nt;
+/
+
+create table Account_table of BMAccount_type
+(
+	accNum PRIMARY KEY,
+	constraint accType_const CHECK (accType IN ('savings','current')),
+	constraint balance_const CHECK (balance IS NOT NULL),
+	constraint interestRate_const CHECK (interestRate IS NOT NULL),
+	constraint openDate_const CHECK (openDate IS NOT NULL)
+);
+/
+
+create table Employee_table of BMEmployee_type
+(
+	empID PRIMARY KEY,
+	constraint niNum_const UNIQUE (niNum),
+	constraint personName_const_emp CHECK (personName IS NOT NULL),
+	constraint address_const_emp CHECK (address IS NOT NULL),	
+	constraint phoneNumber_const_emp CHECK(phoneNumber IS NOT NULL),
+	constraint jobPosition_const CHECK (jobPosition IN ('head','manager','project leader','accountant','cashier')),
+	constraint salary_const CHECK (salary IS NOT NULL),
+	constraint branchID_const CHECK (branchID IS NOT NULL),
+	constraint joinDate_const CHECK (joinDate IS NOT NULL)
+)
+NESTED TABLE phoneNumber STORE AS emp_phone_nt;
+/
+
+create table Customer_table of BMCustomer_type
+(
+	custID PRIMARY KEY,
+	constraint niNum_const_cust UNIQUE (niNum),
+	constraint personName_const_cust CHECK (personName IS NOT NULL),
+	constraint address_const_cust CHECK (address IS NOT NULL),	
+	constraint phoneNumber_const_cust CHECK(phoneNumber IS NOT NULL)
+)
+NESTED TABLE phoneNumber STORE AS cust_phone_nt;
+/
+
+create table Customer_account
+(
+	custID ref BMCustomer_type SCOPE IS Customer_table,
+	accNum ref BMAccount_type SCOPE IS Account_table
+);
+/

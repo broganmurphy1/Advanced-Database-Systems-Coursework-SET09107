@@ -1,0 +1,15 @@
+Drop type BMAccount_type force;
+Drop type BMAddress_type force;
+Drop type BMBranch_type force;
+Drop type BMCustomer_type force;
+Drop type BMEmployee_type force;
+Drop type BMName_type force;
+Drop type BMPerson_type force;
+Drop type BMPhone_nested force;
+Drop type BMPhone_nested_table force;
+
+drop table account_table;
+drop table branch_table;
+drop table customer_account;
+drop table customer_table;
+drop table employee_table;
